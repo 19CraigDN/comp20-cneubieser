@@ -1,59 +1,100 @@
-
-
 @media screen 
-  and (min-width: 1600px)
+  and (min-width: 1601px)
   and (-webkit-min-device-pixel-ratio: 1) {
     .homer{width:295px; height:295px; background:url(homer.jpg) -12px -12px;}
 }
 
 @media screen 
-  and (min-width: 1600px)
+  and (min-width: 1601px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) { 
     .homer{width:295px; height:295px; background:url(homer.jpg) -12px -12px;}
 }
 
 @media screen 
-  and (max-width: 1599px)
-  and (min-width: 1400px)
+  and (max-width: 1600px)
+  and (min-width: 1401px)
   and (-webkit-min-device-pixel-ratio: 1) {
     .homer{width:295px; height:295px; background:url(homer.jpg) -318px -12px;}
 }
 
 @media screen 
-  and (max-width: 1599px)
-  and (min-width: 1400px)
+  and (max-width: 1600px)
+  and (min-width: 1401px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) { 
     .homer{width:295px; height:295px; background:url(homer.jpg) -318px -12px;} 
 }
 
 @media screen 
-  and (max-width: 1399px)
-  and (min-width: 1200px)
+  and (max-width: 1400px)
+  and (min-width: 1201px)
   and (-webkit-min-device-pixel-ratio: 1) {
     .homer{width:295px; height:295px; background:url(homer.jpg) -12px -318px;}
 }
 
 @media screen 
-  and (max-width: 1399px)
-  and (min-width: 1200px)
+  and (max-width: 1400px)
+  and (min-width: 1201px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) { 
     .homer{width:317px; height:317px; background:url(homer.jpg) -12px -318px;}
 }
 
 @media screen 
-  and (max-width: 1199px)
-  and (min-width: 1000px)
+  and (max-width: 1200px)
+  and (min-width: 1001px)
   and (-webkit-min-device-pixel-ratio: 1) {
     .homer{width:295px; height:295px; background:url(homer.jpg) -318px -318px;}
 }
 
 @media screen 
-  and (max-width: 1199px)
-  and (min-width: 1000px)
+  and (max-width: 1200px)
+  and (min-width: 1001px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) { 
     .homer{width:317px; height:317px; background:url(homer.jpg) -318px -318px;}
+}
+
+@media screen 
+  and (max-width: 1000px)
+  and (min-width: 801px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .homer{width:295px; height:295px; background:url(homer.jpg) -12px -318px;}
+}
+
+@media screen 
+  and (max-width: 1000px)
+  and (min-width: 801px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+    .homer{width:317px; height:317px; background:url(homer.jpg) -12px -318px;}
+}
+
+@media screen 
+  and (max-width: 800px)
+  and (min-width: 601px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .homer{width:295px; height:295px; background:url(homer.jpg) -318px -12px;}
+}
+
+@media screen 
+  and (max-width: 800px)
+  and (min-width: 601px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+    .homer{width:295px; height:295px; background:url(homer.jpg) -318px -12px;} 
+}
+
+@media screen 
+  and (max-width: 600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .homer{width:295px; height:295px; background:url(homer.jpg) -12px -12px;}
+}
+
+@media screen 
+  and (man-width: 600px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+    .homer{width:295px; height:295px; background:url(homer.jpg) -12px -12px;}
 }

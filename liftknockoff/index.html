@@ -47,21 +47,31 @@
 
             http.onreadystatechange = function() {//Call a function when the state changes.
                 if(http.readyState == 4 && http.status == 200) {
-                    alert(http.responseText);
+                    //alert(http.responseText);
                 }
             }
             http.send(params);
 
+            var contentString = 
+            '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: <br>' +
+            '<b>Distance to Weinermobile</b>: ';
+
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString
+            });
+
+
             var image = 'piggyGenius.png';
-            var beachMarker = new google.maps.Marker({
+            var marker = new google.maps.Marker({
               position: {lat: pos.lat, lng: pos.lng},
               map: map,
               icon: image
             });
+            
+            marker.addListener('click', function() {
+              infowindow.open(map, marker);
+            });
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
             map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());

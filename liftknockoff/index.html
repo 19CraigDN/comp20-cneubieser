@@ -26,7 +26,7 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
-          zoom: 8
+          zoom: 11
         });
 
         // Try HTML5 geolocation.
@@ -63,6 +63,12 @@
                     if(minDist > curDist) {
                       minDist = curDist;
                     }
+                    var image = 'vehicle.png';
+                    var marker = new google.maps.Marker({
+                      position: {lat: vehicleData[count].lat, lng: vehicleData[count].lng},
+                      map: map,
+                      icon: image
+                    });
                   }
                   else 
                   {
@@ -70,6 +76,12 @@
                     var firstPos = new google.maps.LatLng({lat: pos.lat, lng: pos.lng}); 
                     var curPos = new google.maps.LatLng({lat: vehicleData[count].lat, lng: vehicleData[count].lng}); 
                     weinerDist = google.maps.geometry.spherical.computeDistanceBetween(firstPos, curPos) * 0.00062137;
+                    var image = 'weinermobile.png';
+                    var marker = new google.maps.Marker({
+                      position: {lat: vehicleData[count].lat, lng: vehicleData[count].lng},
+                      map: map,
+                      icon: image
+                    });
                   }
                   /*
                   var lat2 = pos.lat;

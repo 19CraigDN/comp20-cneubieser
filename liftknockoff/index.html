@@ -51,24 +51,13 @@
                 }
             }
             http.send(params);
-/*
-            request = new XMLHttpRequest();
-			request.open("POST", "https://hans-moleman.herokuapp.com/rides", true);
-			request.onreadystatechange = function() {
-				if (request.readyState == 4 && request.status == 200) {
-					data = JSON.parse(request.responseText);
-                    console.log(data);
-				}
-			};
 
-            console.log(pos.lat);
-            console.log(pos.lng);
-            request.send("username=wp7cxuug&lat=1.0&lng=1.0");*/
-            //request.send("username=wp7cxuug&lat=" + pos.lat + "&lng=" + pos.lng);
-            //request.send(formData);
-            //request.send('wp7cxuug');
-            //request.send(pos.lat);
-            //request.send(pos.lng);
+            var image = 'piggyGenius.png';
+            var beachMarker = new google.maps.Marker({
+              position: {lat: pos.lat, lng: pos.lng},
+              map: map,
+              icon: image
+            });
 
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');

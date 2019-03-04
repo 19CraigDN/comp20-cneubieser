@@ -69,7 +69,13 @@
                     if(minDist > curDist) {
                       minDist = curDist;
                     }
-                    var image = 'vehicle.png';
+                    var image;
+                    if(weArePassenger) {
+                      var image = 'vehicle.png';
+                    }
+                    else {
+                      var image = 'happyHm.png';
+                    }
                     var vehicleMarker = new google.maps.Marker({
                       position: {lat: vehicleData[count].lat, lng: vehicleData[count].lng},
                       map: map,

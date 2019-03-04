@@ -55,6 +55,7 @@
                 var weinerExists = false;
                 var weinerDist;
                 var vehicleMarkers;
+                var distances = [];
 
                 var infowindow = new google.maps.InfoWindow();
 
@@ -65,6 +66,9 @@
                     var firstPos = new google.maps.LatLng({lat: pos.lat, lng: pos.lng}); 
                     var curPos = new google.maps.LatLng({lat: vehicleData[count].lat, lng: vehicleData[count].lng}); 
                     var curDist = google.maps.geometry.spherical.computeDistanceBetween(firstPos, curPos) * 0.00062137;
+                    distances.push(curDist);
+                    distances.push(curDist);
+                    console.log(distances);
                     if(minDist > curDist) {
                       minDist = curDist;
                     }
@@ -74,14 +78,18 @@
                       map: map,
                       icon: image
                     });
+                    //console.log(count);
+                    console.log(curDist);
+                    console.log(distances[count]);
                     //vehicleMarker.username = vehicleData[count].username;
                     //vehicleMarker.distance = curDist;
                     vehicleMarker.addListener('click', (function(vehicleMarker, count) {
                       return function() {
                       infowindow.setContent('<p><b>Username</b>: ' + vehicleData[count].username +
-                        '<br><b>Distance away from me</b>: ' + curDist);
+                        '<br><b>Distance away from me</b>: ' + distances[count]);
                       infowindow.open(map, vehicleMarker);
                       }
+                      
                     })(vehicleMarker, count));
                   }
                   else 

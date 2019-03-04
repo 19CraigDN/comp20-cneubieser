@@ -49,7 +49,7 @@
             http.onreadystatechange = function() {//Call a function when the state changes.
               if(http.readyState == 4 && http.status == 200) {
                 var vehicleData = JSON.parse(http.responseText).vehicles;
-                alert(http.responseText);
+                //alert(http.responseText);
                 var minDist = Number.MAX_SAFE_INTEGER;
                 var otherVehicles = false;
                 var weinerExists = false;
@@ -77,8 +77,6 @@
                       map: map,
                       icon: image
                     });
-                    //vehicleMarker.username = vehicleData[count].username;
-                    //vehicleMarker.distance = curDist;
                     vehicleMarker.addListener('click', (function(vehicleMarker, count) {
                       return function() {
                       infowindow.setContent('<p><b>Username</b>: ' + vehicleData[count].username +
@@ -100,8 +98,6 @@
                       map: map,
                       icon: image
                     });
-                    //weinerMarker.username = vehicleData[count].username;
-                    //weinerMarker.distance = weinerDist;
                     weinerMarker.addListener('click', (function(weinerMarker, count) {
                       return function() {
                       infowindow.setContent('<p><b>Username</b>: ' + vehicleData[count].username +
@@ -111,32 +107,6 @@
                     })(weinerMarker, count));
                   }
                 }
-                
-                // Creating our info window for our user
-                /*if(otherVehicles && weinerExists) {
-                  contentString = 
-                  '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
-                  minDist + ' miles<br><b>Distance to Weinermobile</b>: ' + weinerDist + ' miles';
-                }
-                else if(otherVehicles)
-                {
-                  contentString = 
-                  '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
-                  minDist + ' miles<br><b>Distance to Weinermobile</b>: Weiner does not exist';
-                }
-                else if(weinerExists)
-                {
-                  contentString = 
-                  '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
-                  'No other vehicles<br><b>Distance to Weinermobile</b>: ' + weinerDist + ' miles';
-                }
-                else
-                {
-                  contentString = 
-                  '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
-                  'No other vehicles<br><b>Distance to Weinermobile</b>: Weiner does not exist';
-                }*/
-                
 
                 // Tacking the info window onto our marker
                 marker.addListener('click', function() {
@@ -165,18 +135,6 @@
                   }
                   infowindow.open(map, marker);
                 });
-                /*if(weinerExists) {
-                  weinerMarker.addListener('click', function() {
-                    infowindow.setContent('<p><b>Username</b>: ' + weinerMarker.username+
-                      '<br><b>Distance away from me</b>: ' + weinerMarker.distance);
-                    infowindow.open(map, weinerMarker);
-                  });
-                }
-                  vehicleMarker.addListener('click', function() {
-                    infowindow.setContent('<p><b>Username</b>: ' + vehicleMarker.username +
-                      '<br><b>Distance away from me</b>: ' + vehicleMarker.distance);
-                    infowindow.open(map, vehicleMarker);
-                  });*/
               }
             }
             http.send(params);

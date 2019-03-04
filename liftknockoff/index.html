@@ -5,19 +5,7 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
     <div id="map"></div>
@@ -48,8 +36,13 @@
 
             http.onreadystatechange = function() {//Call a function when the state changes.
               if(http.readyState == 4 && http.status == 200) {
+                var weArePassenger = true;
+                if(Object.keys(http.responseText)[0] == 'passengers'){
+                  false;
+                }
+                console.log(weArePassenger);
                 var vehicleData = JSON.parse(http.responseText).vehicles;
-                //alert(http.responseText);
+                alert(http.responseText);
                 var minDist = Number.MAX_SAFE_INTEGER;
                 var otherVehicles = false;
                 var weinerExists = false;

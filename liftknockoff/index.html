@@ -87,7 +87,7 @@
                     vehicleMarker.addListener('click', (function(vehicleMarker, count) {
                       return function() {
                       infowindow.setContent('<p><b>Username</b>: ' + vehicleData[count].username +
-                        '<br><b>Distance away from me</b>: ' + distances[count]);
+                        '<br><b>Distance away from me</b>: ' + distances[count] + ' miles');
                       infowindow.open(map, vehicleMarker);
                       }
                       
@@ -109,7 +109,7 @@
                     weinerMarker.addListener('click', (function(weinerMarker, count) {
                       return function() {
                       infowindow.setContent('<p><b>Username</b>: ' + vehicleData[count].username +
-                        '<br><b>Distance away from me</b>: ' + weinerDist);
+                        '<br><b>Distance away from me</b>: ' + weinerDist + ' miles');
                       infowindow.open(map, weinerMarker);
                       }
                     })(weinerMarker, count));

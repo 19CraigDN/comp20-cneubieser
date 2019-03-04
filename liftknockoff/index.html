@@ -53,6 +53,7 @@
                 var otherVehicles = false;
                 var weinerExists = false;
                 var weinerDist;
+                var vehicleMarkers;
                 for(count = 0 ; count < vehicleData.length ; count++) {
                   if(vehicleData[count].username != 'WEINERMOBILE')
                   {
@@ -64,11 +65,13 @@
                       minDist = curDist;
                     }
                     var image = 'vehicle.png';
-                    var marker = new google.maps.Marker({
+                    var vehicleMarker = new google.maps.Marker({
                       position: {lat: vehicleData[count].lat, lng: vehicleData[count].lng},
                       map: map,
                       icon: image
                     });
+                    vehicleMarker.username = vehicleData[count].username;
+                    vehicleMarker.distance = curDist;
                   }
                   else 
                   {
@@ -77,37 +80,19 @@
                     var curPos = new google.maps.LatLng({lat: vehicleData[count].lat, lng: vehicleData[count].lng}); 
                     weinerDist = google.maps.geometry.spherical.computeDistanceBetween(firstPos, curPos) * 0.00062137;
                     var image = 'weinermobile.png';
-                    var marker = new google.maps.Marker({
+                    var weinerMarker = new google.maps.Marker({
                       position: {lat: vehicleData[count].lat, lng: vehicleData[count].lng},
                       map: map,
                       icon: image
                     });
+                    weinerMarker.username = vehicleData[count].username;
+                    weinerMarker.distance = weinerDist;
                   }
-                  /*
-                  var lat2 = pos.lat;
-                  var lon2 = pos.lng;
-                  var lon1 = vehicleData[count].lng;
-                  var lat1 = vehicleData[count].lat; 
-
-                  var R = 6371; // km 
-                  //has a problem with the .toRad() method below.
-                  var x1 = lat2-lat1;
-                  var dLat = x1.toRad();  
-                  var x2 = lon2-lon1;
-                  var dLon = x2.toRad();  
-                  var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
-                  Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
-                  Math.sin(dLon/2) * Math.sin(dLon/2);  
-                  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-
-                  var curDist = R * c;
-                  */
-                  
                 }
                 
                 // Creating our info window for our user
                 var contentString = '';
-                if(otherVehicles && weinerExists) {
+                /*if(otherVehicles && weinerExists) {
                   contentString = 
                   '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
                   minDist + ' miles<br><b>Distance to Weinermobile</b>: ' + weinerDist + ' miles';
@@ -129,15 +114,52 @@
                   contentString = 
                   '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
                   'No other vehicles<br><b>Distance to Weinermobile</b>: Weiner does not exist';
-                }
+                }*/
                 var infowindow = new google.maps.InfoWindow({
                   content: contentString
                 });
 
                 // Tacking the info window onto our marker
                 marker.addListener('click', function() {
+                  if(otherVehicles && weinerExists) {
+                    infowindow.setContent(
+                    '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
+                    minDist + ' miles<br><b>Distance to Weinermobile</b>: ' + weinerDist + ' miles');
+                  }
+                  else if(otherVehicles)
+                  {
+                    infowindow.setContent(
+                    '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
+                    minDist + ' miles<br><b>Distance to Weinermobile</b>: Weiner does not exist');
+                  }
+                  else if(weinerExists)
+                  {
+                    infowindow.setContent(
+                    '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
+                    'No other vehicles<br><b>Distance to Weinermobile</b>: ' + weinerDist + ' miles');
+                  }
+                  else
+                  {
+                    infowindow.setContent(
+                    '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: ' +
+                    'No other vehicles<br><b>Distance to Weinermobile</b>: Weiner does not exist');
+                  }
                   infowindow.open(map, marker);
                 });
+                if(weinerExists) {
+                  weinerMarker.addListener('click', function() {
+                    infowindow.setContent('<p><b>Username</b>: ' + weinerMarker.username+
+                      '<br><b>Distance away from me</b>: ' + weinerMarker.distance);
+                    infowindow.open(map, weinerMarker);
+                  });
+                }
+                if(otherVehicles) {
+                  vehicleMarker.addListener('click', function() {
+                    infowindow.setContent('<p><b>Username</b>: ' + vehicleMarker.username +
+                      '<br><b>Distance away from me</b>: ' + vehicleMarker.distance);
+                    infowindow.open(map, vehicleMarker);
+                  });
+                }
               }
             }
             http.send(params);
@@ -149,8 +171,6 @@
               map: map,
               icon: image
             });
-            
-            
 
             // Center the map on our position
             map.setCenter(pos);

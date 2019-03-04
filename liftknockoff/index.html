@@ -40,7 +40,7 @@
                 if(Object.keys(http.responseText)[0] == 'passengers'){
                   weArePassenger = false;
                 }
-                console.log(weArePassenger);
+                //console.log(weArePassenger);
                 var vehicleData;
                 if(weArePassenger) {
                   vehicleData = JSON.parse(http.responseText).vehicles;
@@ -48,7 +48,7 @@
                 else {
                   vehicleData = JSON.parse(http.responseText).passengers;
                 }
-                alert(http.responseText);
+                //alert(http.responseText);
                 var minDist = Number.MAX_SAFE_INTEGER;
                 var otherVehicles = false;
                 var weinerExists = false;
@@ -66,6 +66,9 @@
                     var curPos = new google.maps.LatLng({lat: vehicleData[count].lat, lng: vehicleData[count].lng}); 
                     var curDist = google.maps.geometry.spherical.computeDistanceBetween(firstPos, curPos) * 0.00062137;
                     distances.push(curDist);
+                    //console.log(curDist);
+                    //console.log(vehicleData.length);
+                    //console.log(distances.length);
                     if(minDist > curDist) {
                       minDist = curDist;
                     }
@@ -92,6 +95,7 @@
                   }
                   else 
                   {
+                    distances.push(1);
                     weinerExists = true;
                     var firstPos = new google.maps.LatLng({lat: pos.lat, lng: pos.lng}); 
                     var curPos = new google.maps.LatLng({lat: vehicleData[count].lat, lng: vehicleData[count].lng}); 

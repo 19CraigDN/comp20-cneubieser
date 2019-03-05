@@ -86,8 +86,8 @@
                     });
                     vehicleMarker.addListener('click', (function(vehicleMarker, count) {
                       return function() {
-                      infowindow.setContent('<p><b>Username</b>: ' + vehicleData[count].username +
-                        '<br><b>Distance away from me</b>: ' + distances[count] + ' miles');
+                      infowindow.setContent('Username: ' + vehicleData[count].username +
+                        '<br>Distance away from me: ' + distances[count] + ' miles');
                       infowindow.open(map, vehicleMarker);
                       }
                       
@@ -108,8 +108,8 @@
                     });
                     weinerMarker.addListener('click', (function(weinerMarker, count) {
                       return function() {
-                      infowindow.setContent('<p><b>Username</b>: ' + vehicleData[count].username +
-                        '<br><b>Distance away from me</b>: ' + weinerDist + ' miles');
+                      infowindow.setContent('Username: ' + vehicleData[count].username +
+                        '<br>Distance away from me: ' + weinerDist + ' miles');
                       infowindow.open(map, weinerMarker);
                       }
                     })(weinerMarker, count));
@@ -121,36 +121,36 @@
                 marker.addListener('click', function() {
                   if(weArePassenger){
                     infowindow.setContent(
-                      '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest vehicle</b>: '
+                      'Username: wp7cxuug <br> <b>Distance to nearest vehicle</b>: '
                     )
                   }
                   else {
                     infowindow.setContent(
-                      '<p><b>Username</b>: wp7cxuug <br> <b>Distance to nearest passenger</b>: '
+                      'Username: wp7cxuug <br> <b>Distance to nearest passenger</b>: '
                     )
                   }
                   if(otherVehicles && weinerExists) {
                     infowindow.setContent(
                     infowindow.content + 
-                    minDist + ' miles<br><b>Distance to Weinermobile</b>: ' + weinerDist + ' miles');
+                    minDist + ' miles<br>Distance to Weinermobile: ' + weinerDist + ' miles');
                   }
                   else if(otherVehicles)
                   {
                     infowindow.setContent(
                       infowindow.content + 
-                    minDist + ' miles<br><b>Distance to Weinermobile</b>: Weiner does not exist');
+                    minDist + ' miles<br>Distance to Weinermobile: Weiner does not exist');
                   }
                   else if(weinerExists)
                   {
                     infowindow.setContent(
                       infowindow.content + 
-                    'None found<br><b>Distance to Weinermobile</b>: ' + weinerDist + ' miles');
+                    'None found<br>Distance to Weinermobile: ' + weinerDist + ' miles');
                   }
                   else
                   {
                     infowindow.setContent(
                     infowindow.content + 
-                    'None found<br><b>Distance to Weinermobile</b>: Weiner does not exist');
+                    'None found<br>Distance to Weinermobile: Weiner does not exist');
                   }
                   infowindow.open(map, marker);
                 });

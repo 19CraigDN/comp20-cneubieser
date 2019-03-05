@@ -37,16 +37,20 @@
             http.onreadystatechange = function() {//Call a function when the state changes.
               if(http.readyState == 4 && http.status == 200) {
                 var weArePassenger = true;
-                if(Object.keys(http.responseText)[0] == 'passengers'){
+                var parsedJSON = JSON.parse(http.responseText);
+                //console.log(JSON.parse(http.responseText));
+                //console.log(Object.keys(parsedJSON)[0]);
+                if(Object.keys(parsedJSON)[0] == 'passengers'){
                   weArePassenger = false;
+                  //console.log("yes");
                 }
                 //console.log(weArePassenger);
                 var vehicleData;
                 if(weArePassenger) {
-                  vehicleData = JSON.parse(http.responseText).vehicles;
+                  vehicleData = parsedJSON.vehicles;
                 }
                 else {
-                  vehicleData = JSON.parse(http.responseText).passengers;
+                  vehicleData = parsedJSON.passengers;
                 }
                 //alert(http.responseText);
                 var minDist = Number.MAX_SAFE_INTEGER;
@@ -95,11 +99,11 @@
                   }
                   else 
                   {
-                    distances.push(1);
                     weinerExists = true;
                     var firstPos = new google.maps.LatLng({lat: pos.lat, lng: pos.lng}); 
                     var curPos = new google.maps.LatLng({lat: vehicleData[count].lat, lng: vehicleData[count].lng}); 
                     weinerDist = google.maps.geometry.spherical.computeDistanceBetween(firstPos, curPos) * 0.00062137;
+                    distances.push(weinerDist);
                     var image = 'weinermobile.png';
                     var weinerMarker = new google.maps.Marker({
                       position: {lat: vehicleData[count].lat, lng: vehicleData[count].lng},
@@ -109,7 +113,7 @@
                     weinerMarker.addListener('click', (function(weinerMarker, count) {
                       return function() {
                       infowindow.setContent('Username: ' + vehicleData[count].username +
-                        '<br>Distance away from me: ' + weinerDist + ' miles');
+                        '<br>Distance away from me: ' + distances[count] + ' miles');
                       infowindow.open(map, weinerMarker);
                       }
                     })(weinerMarker, count));

@@ -28,7 +28,7 @@
             
             var http = new XMLHttpRequest();
             var url = 'https://morning-tor-13076.herokuapp.com/rides';
-            var params = "username=wp7cxuug&lat=" + pos.lat + "&lng=" + pos.lng;
+            var params = "username=JANET&lat=" + pos.lat + "&lng=" + pos.lng;
             http.open('POST', url, true);
 
             //Send the proper header information along with the request
@@ -38,8 +38,8 @@
               if(http.readyState == 4 && http.status == 200) {
                 var weArePassenger = true;
                 var parsedJSON = JSON.parse(http.responseText);
-                //console.log(JSON.parse(http.responseText));
-                //console.log(Object.keys(parsedJSON)[0]);
+                console.log(JSON.parse(http.responseText));
+                console.log(Object.keys(parsedJSON)[0]);
                 if(Object.keys(parsedJSON)[0] == 'passengers'){
                   weArePassenger = false;
                   //console.log("yes");

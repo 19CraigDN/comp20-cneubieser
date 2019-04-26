@@ -13,60 +13,68 @@
     Introduction
   </div>
   <div class = "bullets">
-    Here's my introduction
+    The product I'm working with is the server for a private car service which takes in locations and usernames and stores them together in a database.
+    The usernames can either correspond to vehicles or passengers. Then, the data can be taken out of the database through specific passenger username queries or
+    just by seeing the entire list of all the vehicles. I've been hired to find some securities and vulnerabilities that lie within this implementation of the
+    database as well as find some possible fixes.
   </div>
   <div class = "subsection">
     Methodology
   </div>
   <div class = "bullets">
-    Here's my methodology
+    I started off mostly tried to penetrate the server by sending it weird data at first via POST. Over time, I found certain things that worked that would mess with 
+    the client's side and cause problems. I then moved on to see if I could find anything specifically involving the privacy of the data and sure enough I found something there as well.
   </div>
   <div class = "subsection">
     Abstract of Findings
   </div>
   <div class = "bullets">
-    Here's my methodology
+    I found three different security and privacy issues with the implementation. Two of these involved input that I gave to the server via POST and one of them involved
+    a query that I gave to the server via GET. The three issues varied in severity, but I believe all of them to be important to fix since they all seem to have relatively
+    simple solutions.
   </div>
   <div class = "subsection">
     Issues found
   </div>
   <div class = "bullets">
     <ul>
-        <li>Issue: No range limit on numbers</li>
-        <li>Location</li>
-        <li>Severity</li>
-        <li>Description</li>
-        <li>Proof of vulnerability</li>
-        <li>Resolution</li>
+        <li>Issue: No range limit on latitude or longitude</li>
+        <li>Location: On the page that the client receives from interpreting the data given by their /rides POST</li>
+        <li>Severity: Low</li>
+        <li>Description: I inserted latitude and longitude values that were outside the boundaries of the earth, 
+            so passengers could possibly get locations that are not on earth as the closest vehicle to them</li>
+        <li>Proof of vulnerability: <img src=boundary.png></li>
+        <li>Resolution: Determine if input for latitude and longitude falls within a certain range of values and if not, don't allow the input</li>
     </ul>
     <ul>
-        <li>Issue</li>
-        <li>Location</li>
-        <li>Severity</li>
-        <li>Description</li>
-        <li>Proof of vulnerability</li>
-        <li>Resolution</li>
+        <li>Issue: Cross site scripting</li>
+        <li>Location: On the page that the client receives from interpreting the data given by their /rides POST</li>
+        <li>Severity: High</li>
+        <li>Description: I inserted an HTML image tag as a username which means people could also possibly post explicit images as their usernames</li>
+        <li>Proof of vulnerability: <img src=xss.png></li>
+        <li>Resolution: Determine if input has special characters such as angle brackets and if so, don't allow the input</li>
     </ul>
     <ul>
-        <li>Issue</li>
-        <li>Location</li>
-        <li>Severity</li>
-        <li>Description</li>
-        <li>Proof of vulnerability</li>
-        <li>Resolution</li>
+        <li>Issue: NoSQL injection</li>
+        <li>Location: In the /passengers.json query</li>
+        <li>Severity: Medium</li>
+        <li>Description: I got all the data out from the database by using a query that checked if the username was not equal to 1 which included all of the other usernames.</li>
+        <li>Proof of vulnerability: <img src=inject.png></li>
+        <li>Resolution: Determine if input only characters that are allowed in usernames and if not, don't allow the input</li>
     </ul>
   </div>
   <div class = "subsection">
     Conclusion
   </div>
   <div class = "bullets">
-    Here's my methodology
+    Ultimately, I'm sure there are many more securities and vulnerabilities with this implementation. However, the ones I found were just the ones that stood out to me the 
+    most by giving it a first look. They really just show how important it is to look into the security of your applications because they honestly can be so easily broken.
   </div>
   <div class = "subsection">
     References
   </div>
   <div class = "bullets">
-    Here's my methodology
+    <a href="https://sites.google.com/site/iasoncs/home/database-security/nosql-injection">Help with NoSQL injection</a> 
   </div>
 </body>
 </html>
